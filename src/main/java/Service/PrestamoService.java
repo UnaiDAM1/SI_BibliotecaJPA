@@ -10,9 +10,8 @@ public class PrestamoService {
     private PrestamoDAO prestamoDAO;
     private List<Prestamo> prestamos = new ArrayList<>();
 
-    public PrestamoService(PrestamoDAO prestamoDAO, List<Prestamo> prestamos) {
+    public PrestamoService(PrestamoDAO prestamoDAO) {
         this.prestamoDAO = prestamoDAO;
-        this.prestamos = prestamos;
         sincronizar();
     }
 

@@ -11,8 +11,7 @@ public class UsuarioService {
     UsuarioDAO usuarioDAO;
     List<Usuario> usuarios = new ArrayList<>();
 
-    public UsuarioService(List<Usuario> usuarios, UsuarioDAO usuarioDAO) {
-        this.usuarios = usuarios;
+    public UsuarioService(UsuarioDAO usuarioDAO) {
         this.usuarioDAO = usuarioDAO;
         sincronizar();
     }
