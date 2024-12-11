@@ -23,7 +23,7 @@ public class Libro {
     @Column(name = "autor", nullable = false, length = 100)
     private String autor;
 
-    @OneToMany(mappedBy = "isbn")
+    @OneToMany(mappedBy = "isbn", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Ejemplar> ejemplars = new LinkedHashSet<>();
 
     public Set<Ejemplar> getEjemplars() {

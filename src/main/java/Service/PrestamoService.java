@@ -38,6 +38,13 @@ public class PrestamoService {
         prestamoDAO.deletePrestamo(id);
         sincronizar();
     }
+    public void deletePrestamosByLibro(String isbn){
+        for (Prestamo prestamo : prestamoDAO.listPrestamo()) {
+            if (prestamo.getEjemplar().getIsbn().getIsbn().equals(isbn)) {
+                prestamoDAO.deletePrestamo(prestamo.getId());
+            }
+        }
+    }
 
     public List<Prestamo> listPrestamo(){
         return prestamos;

@@ -169,9 +169,12 @@ public class Main {
                     System.out.println("Usuario eliminado con exito.");
                     break;
                 case 12:
+                    // Para eliminar un libro será un poco más dificil ya que tendremos que antes eliminar
+                    // todos los prestamos y no nos de error al eliminar en cascada
                     System.out.println(libroService.getLibros());
                     System.out.println("Introduzca el ISBN del libro a eliminar: ");
                     String isbnLibroDelete = sc.nextLine();
+                    prestamoService.deletePrestamosByLibro(isbnLibroDelete);
                     libroService.deleteLibro(isbnLibroDelete);
                     System.out.println("Libro eliminado con exito.");
                     break;

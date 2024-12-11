@@ -51,6 +51,14 @@ public class EjemplarService {
         sincronizar();
     }
 
+//    public void deleteEjemplarPorISBN(String isbn){
+//        for (Ejemplar ejemplar : ejemplarDAO.listEmplares()) {
+//            if (ejemplar.getIsbn().getIsbn().equals(isbn)) {
+//                ejemplarDAO.deleteEmplar(ejemplar.getId());
+//            }
+//        }
+//    }
+
     public List<Ejemplar> listEjemplar(){
         return ejemplares;
     }

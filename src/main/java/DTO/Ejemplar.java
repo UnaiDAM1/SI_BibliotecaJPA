@@ -18,7 +18,7 @@ public class Ejemplar {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.PERSIST)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "isbn", nullable = false)
     private DTO.Libro isbn;
