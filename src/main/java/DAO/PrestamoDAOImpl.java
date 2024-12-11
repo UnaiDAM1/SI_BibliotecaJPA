@@ -6,6 +6,11 @@ import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
+/*
+ * @Autor: Unai Nieto DAM2
+ *
+ * */
+
 public class PrestamoDAOImpl implements PrestamoDAO {
     EntityManager em;
 
@@ -42,6 +47,17 @@ public class PrestamoDAOImpl implements PrestamoDAO {
     public List<Prestamo> listPrestamo() {
         TypedQuery<Prestamo> query = em.createQuery("SELECT p FROM Prestamo p", Prestamo.class);
         return query.getResultList();
+    }
+
+    @Override
+    public List<Prestamo> listPrestamoPorID(int id) {
+        TypedQuery<Prestamo> query = em.createQuery("SELECT p FROM Prestamo p WHERE p.usuario = :id", Prestamo.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public Prestamo getPrestamo(int id) {
+        return em.find(Prestamo.class, id);
     }
 }
 

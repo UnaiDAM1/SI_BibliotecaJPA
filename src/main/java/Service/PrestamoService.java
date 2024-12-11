@@ -6,6 +6,11 @@ import DTO.Prestamo;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * @Autor: Unai Nieto DAM2
+ *
+ * */
+
 public class PrestamoService {
     private PrestamoDAO prestamoDAO;
     private List<Prestamo> prestamos = new ArrayList<>();
@@ -36,5 +41,23 @@ public class PrestamoService {
 
     public List<Prestamo> listPrestamo(){
         return prestamos;
+    }
+
+
+    public List<Prestamo> listPrestamoPorID(int id){
+        return prestamoDAO.listPrestamoPorID(id);
+    }
+
+    public List<Prestamo> listPrestamosPorIDMemoria(int id) {
+        List<Prestamo> prestamosDeID = new ArrayList<>();
+        for (Prestamo prestamo : prestamos) {
+            if (prestamo.getUsuario().getId() == id) {
+                prestamosDeID.add(prestamo);
+            }
+        }
+        return prestamosDeID;
+    }
+    public Prestamo getPrestamo(int id){
+        return prestamoDAO.getPrestamo(id);
     }
 }

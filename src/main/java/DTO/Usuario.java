@@ -4,10 +4,16 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
+/*
+ * @Autor: Unai Nieto DAM2
+ *
+ * */
+
 @Entity
 @Table(name = "usuario", schema = "bibliotecajpa")
 public class Usuario {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -89,8 +95,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Integer id, String dni, String nombre, String email, String password, String tipo) {
-        this.id = id;
+    public Usuario(String dni, String nombre, String email, String password, String tipo) {
         this.dni = dni;
         this.nombre = nombre;
         this.email = email;
@@ -100,7 +105,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario: " +
+        return "\nUsuario: " +
                 "ID = " + id +
                 ", DNI = '" + dni + '\'' +
                 ", nombre = '" + nombre + '\'' +

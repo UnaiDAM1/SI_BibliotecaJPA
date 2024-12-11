@@ -1,9 +1,14 @@
 package DTO;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+/*
+ * @Autor: Unai Nieto DAM2
+ *
+ * */
 
 @Entity
 @Table(name = "libro", schema = "bibliotecajpa")
@@ -17,6 +22,17 @@ public class Libro {
 
     @Column(name = "autor", nullable = false, length = 100)
     private String autor;
+
+    @OneToMany(mappedBy = "isbn")
+    private Set<Ejemplar> ejemplars = new LinkedHashSet<>();
+
+    public Set<Ejemplar> getEjemplars() {
+        return ejemplars;
+    }
+
+    public void setEjemplars(Set<Ejemplar> ejemplars) {
+        this.ejemplars = ejemplars;
+    }
 
     public String getIsbn() {
         return isbn;
@@ -53,7 +69,7 @@ public class Libro {
 
     @Override
     public String toString() {
-        return "Libro: " +
+        return "\nLibro: " +
                 "ISBN = '" + isbn + '\'' +
                 ", titulo = '" + titulo + '\'' +
                 ", autor = '" + autor;

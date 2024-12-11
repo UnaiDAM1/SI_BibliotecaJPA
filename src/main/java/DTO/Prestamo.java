@@ -6,10 +6,16 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
 
+/*
+ * @Autor: Unai Nieto DAM2
+ *
+ * */
+
 @Entity
 @Table(name = "prestamo", schema = "bibliotecajpa")
 public class Prestamo {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -72,21 +78,21 @@ public class Prestamo {
     public Prestamo() {
     }
 
-    public Prestamo(Integer id, Usuario usuario, Ejemplar ejemplar, LocalDate fechaInicio, LocalDate fechaDevolucion) {
-        this.id = id;
+    public Prestamo(Usuario usuario, Ejemplar ejemplar) {
         this.usuario = usuario;
         this.ejemplar = ejemplar;
-        this.fechaInicio = fechaInicio;
-        this.fechaDevolucion = fechaDevolucion;
+        this.fechaInicio = LocalDate.now();
+        this.fechaDevolucion = null ;
     }
 
     @Override
     public String toString() {
         return "Prestamo: " +
                 "ID = " + id +
-                ", usuario = " + usuario +
-                ", ejemplar = " + ejemplar +
-                ", fecha de inicio=" + fechaInicio +
-                ", fecha de devolucion=" + fechaDevolucion;
+                "\n" + usuario +
+                "\n" + ejemplar +
+                "\nFecha de inicio=" + fechaInicio +
+                ", fecha de devolucion=" + fechaDevolucion
+                + "\n-----------------------------\n";
     }
 }

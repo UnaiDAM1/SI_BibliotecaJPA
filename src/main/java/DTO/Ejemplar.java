@@ -5,10 +5,16 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+/*
+ * @Autor: Unai Nieto DAM2
+ *
+ * */
+
 @Entity
 @Table(name = "ejemplar", schema = "bibliotecajpa")
 public class Ejemplar {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -49,17 +55,17 @@ public class Ejemplar {
     public Ejemplar() {
     }
 
-    public Ejemplar(Integer id, Libro isbn, String estado) {
-        this.id = id;
+    public Ejemplar(Libro isbn) {
         this.isbn = isbn;
-        this.estado = estado;
+        this.estado = "Disponible";
     }
 
     @Override
     public String toString() {
         return "Ejemplar: " +
-                "\nID = " + id +
-                ", ISBN = " + isbn +
-                ", estado = '" + estado;
+                "ID = " + id +
+                "\n" + isbn +
+                ", estado = '" + estado
+                + "\n-----------------------------\n";
     }
 }

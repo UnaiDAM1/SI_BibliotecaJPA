@@ -6,6 +6,11 @@ import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
+/*
+ * @Autor: Unai Nieto DAM2
+ *
+ * */
+
 public class EjemplarDAOImpl implements EjemplarDAO {
     EntityManager em;
 
@@ -15,7 +20,7 @@ public class EjemplarDAOImpl implements EjemplarDAO {
 
 
     @Override
-    public void insertEmplar(Ejemplar ejemplar) {
+    public void insertEjemplar(Ejemplar ejemplar) {
         em.getTransaction().begin();
         em.persist(ejemplar);
         em.getTransaction().commit();
@@ -41,6 +46,17 @@ public class EjemplarDAOImpl implements EjemplarDAO {
     @Override
     public List<Ejemplar> listEmplares() {
         TypedQuery<Ejemplar> query = em.createQuery("SELECT e FROM Ejemplar e", Ejemplar.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public Ejemplar getEmplar(int id) {
+        return em.find(Ejemplar.class, id);
+    }
+
+    @Override
+    public List<Ejemplar> getLibrosEnStockDisponibles(String isbn) {
+        TypedQuery<Ejemplar> query = em.createQuery("SELECT e FROM Ejemplar e WHERE estado = 'Disponible' AND e.isbn = :isbn", Ejemplar.class);
         return query.getResultList();
     }
 }

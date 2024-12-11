@@ -6,6 +6,11 @@ import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
+/*
+ * @Autor: Unai Nieto DAM2
+ *
+ * */
+
 public class UsuarioDAOImpl implements UsuarioDAO{
 
     EntityManager em;
@@ -44,4 +49,11 @@ public class UsuarioDAOImpl implements UsuarioDAO{
         TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u", Usuario.class);
         return query.getResultList();
     }
+
+    @Override
+    public Usuario getUsuario(int id) {
+        return em.find(Usuario.class, id);
+    }
+
+
 }

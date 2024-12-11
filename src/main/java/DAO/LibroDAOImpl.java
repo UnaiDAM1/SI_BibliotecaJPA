@@ -6,6 +6,11 @@ import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
+/*
+ * @Autor: Unai Nieto DAM2
+ *
+ * */
+
 public class LibroDAOImpl implements LibroDAO {
     private EntityManager em;
 
@@ -42,5 +47,10 @@ public class LibroDAOImpl implements LibroDAO {
     public List<Libro> getLibros() {
         TypedQuery<Libro> query = em.createQuery("SELECT l FROM Libro l", Libro.class);
         return query.getResultList();
+    }
+
+    @Override
+    public Libro getLibroPorISBN(String isbn) {
+        return em.find(Libro.class, isbn);
     }
 }
